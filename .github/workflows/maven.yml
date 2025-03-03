@@ -30,6 +30,15 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
+    - name: Cache Maven
+      id: cache-primes
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.m2
+          ~/repository
+        key: ${{ github.job }}-${{ hashFiles('**/pom.xml') }}
+
 
 
 
